@@ -16,3 +16,9 @@ def call(boolean abortPipeline = false, boolean evaluateQualityGate = false) {
         }
     }
 }
+
+def shouldAbortPipeline() {
+    def branchName = env.BRANCH_NAME ?: ''
+    
+    return branchName == 'master' || branchName.startsWith('hotfix')
+}
